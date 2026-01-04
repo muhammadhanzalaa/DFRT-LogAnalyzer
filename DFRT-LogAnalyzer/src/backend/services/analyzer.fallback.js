@@ -743,7 +743,7 @@ class FallbackAnalyzer {
     generateReport() {
         // FIXED: Validate result object before using
         if (!this.result || typeof this.result !== 'object') {
-            return 'No analysis results available\\n';
+            return 'No analysis results available\n';
         }
         
         const result = this.result;
@@ -754,8 +754,50 @@ class FallbackAnalyzer {
         const ruleLine = '================================================================================';
         const divLine = '--------------------------------------------------------------------------------';
         
-        return `\\n${ruleLine}\\n                    DFRT LOG ANALYZER - FORENSIC REPORT\\n${ruleLine}\\n\\nAnalysis ID: ${result.analysisId || 'N/A'}\\nGenerated:   ${new Date().toISOString()}\\nDuration:    ${result.processingTimeMs || 0} ms\\n${divLine}\\n                              EXECUTIVE SUMMARY\\n${divLine}\\n\\nFiles Analyzed:     ${result.totalFilesAnalyzed || 0}\\nSuccessful:         ${result.successfulFiles || 0}\\nFailed:             ${result.failedFiles?.length || 0}\\nTotal Entries:      ${result.totalEntriesParsed || 0}\\nNormal Events:      ${stats.normalEvents || 0}\\nWarning Events:     ${stats.warningEvents || 0}\\nCritical Events:    ${stats.criticalEvents || 0}\\nThreats Detected:   ${detection.totalThreats || 0}\\nCritical Threats:   ${detection.criticalThreats || 0}\\nRisk Score:         ${((detection.overallRiskScore || 0) * 100).toFixed(1)}%\\n${divLine}\\n                             RECOMMENDATIONS\\n${divLine}\\n\\n${recs.length > 0 ? recs.map((r, i) => `${i + 1}. ${r}`).join('\\n') : '(No specific recommendations)'}\\n\\n${ruleLine}\\n                              END OF REPORT\\n${ruleLine}\\n`;\n    }
-    
+        const lines = [
+            '',
+            ruleLine,
+            '                    DFRT LOG ANALYZER - FORENSIC REPORT',
+            ruleLine,
+            '',
+            `Analysis ID: ${result.analysisId || 'N/A'}`,
+            `Generated:   ${new Date().toISOString()}`,
+            `Duration:    ${result.processingTimeMs || 0} ms`,
+            divLine,
+            '                              EXECUTIVE SUMMARY',
+            divLine,
+            '',
+            `Files Analyzed:     ${result.totalFilesAnalyzed || 0}`,
+            `Successful:         ${result.successfulFiles || 0}`,
+            `Failed:             ${result.failedFiles?.length || 0}`,
+            `Total Entries:      ${result.totalEntriesParsed || 0}`,
+            `Normal Events:      ${stats.normalEvents || 0}`,
+            `Warning Events:     ${stats.warningEvents || 0}`,
+            `Critical Events:    ${stats.criticalEvents || 0}`,
+            `Threats Detected:   ${detection.totalThreats || 0}`,
+            `Critical Threats:   ${detection.criticalThreats || 0}`,
+            `Risk Score:         ${((detection.overallRiskScore || 0) * 100).toFixed(1)}%`,
+            divLine,
+            '                             RECOMMENDATIONS',
+            divLine,
+            ''
+        ];
+        
+        if (recs.length > 0) {
+            recs.forEach((r, i) => lines.push(`${i + 1}. ${r}`));
+        } else {
+            lines.push('(No specific recommendations)');
+        }
+        
+        lines.push('');
+        lines.push(ruleLine);
+        lines.push('                              END OF REPORT');
+        lines.push(ruleLine);
+        lines.push('');
+        
+        return lines.join('\n');
+    }
+
     getProgress() {
         return {
             isRunning: false,
