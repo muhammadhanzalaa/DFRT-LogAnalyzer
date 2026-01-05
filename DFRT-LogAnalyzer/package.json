@@ -1,0 +1,48 @@
+{
+  "name": "dfrt-log-analyzer-backend",
+  "version": "3.0.0",
+  "description": "DFRT Digital Forensics and Incident Response Log Analyzer - Backend Server",
+  "main": "src/backend/server.js",
+  "scripts": {
+    "start": "node src/backend/server.js",
+    "dev": "nodemon src/backend/server.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/backend",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": [
+    "DFRT",
+    "forensics",
+    "incident-response",
+    "log-analysis",
+    "threat-detection"
+  ],
+  "author": "DFRT Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.6",
+    "jsonwebtoken": "^9.1.0",
+    "express-rate-limit": "^6.10.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
