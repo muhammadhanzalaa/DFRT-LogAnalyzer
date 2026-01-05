@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analysis Results - DFRT Log Analyzer">
+    <title>Results - DFRT Log Analyzer</title>
+    
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-brand">
+                <div class="app-header-brand-icon">DFRT</div>
+                <span>Log Analyzer</span>
+            </div>
+            
+            <div class="app-header-title">
+                <h1 class="page-title m-0">Analysis Results</h1>
+            </div>
+            
+            <nav class="app-header-nav">
+                <a href="index.html" class="header-nav-item">Dashboard</a>
+                <a href="analyze.html" class="header-nav-item">Analyze</a>
+                <a href="#" class="header-nav-item active">Results</a>
+                <a href="threats.html" class="header-nav-item">Threats</a>
+                <a href="timeline.html" class="header-nav-item">Timeline</a>
+                <a href="settings.html" class="header-nav-item">Settings</a>
+            </nav>
+        </header>
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📊</span>
+                        <span class="sidebar-nav-label">Dashboard</span>
+                    </a>
+                    <a href="analyze.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📁</span>
+                        <span class="sidebar-nav-label">Analyze</span>
+                    </a>
+                    <a href="#" class="sidebar-nav-item active">
+                        <span class="sidebar-nav-icon">📋</span>
+                        <span class="sidebar-nav-label">Results</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Analysis</div>
+                <nav class="sidebar-nav">
+                    <a href="threats.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">⚠️</span>
+                        <span class="sidebar-nav-label">Threats</span>
+                    </a>
+                    <a href="timeline.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📈</span>
+                        <span class="sidebar-nav-label">Timeline</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-content">
+                <div class="page-header">
+                    <h1 class="page-title">Analysis Results</h1>
+                    <p class="page-description">Detailed results from your log analysis</p>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">Export Results</button>
+                        <button class="btn btn-secondary">Print Report</button>
+                    </div>
+                </div>
+                
+                <!-- Analysis Summary -->
+                <div class="grid grid-4 mb-6">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Total Entries</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-primary);">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Critical Events</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-danger);">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Warnings</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-warning);">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Risk Score</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-info);">0/100</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filters -->
+                <div class="panel mb-6">
+                    <div class="panel-header">
+                        <div class="panel-title">Filters</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="grid grid-4" style="gap: var(--space-3);">
+                            <div class="form-group mb-0">
+                                <label>Severity</label>
+                                <select class="form-control">
+                                    <option value="">All</option>
+                                    <option>Critical</option>
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>User</label>
+                                <input type="text" class="form-control" placeholder="Filter by user">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>IP Address</label>
+                                <input type="text" class="form-control" placeholder="Filter by IP">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>Event Type</label>
+                                <input type="text" class="form-control" placeholder="Filter by event">
+                            </div>
+                        </div>
+                        <div style="margin-top: var(--space-4); display: flex; gap: var(--space-3);">
+                            <button class="btn btn-primary btn-sm">Apply Filters</button>
+                            <button class="btn btn-secondary btn-sm">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Table -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Log Entries</div>
+                        <div style="display: flex; gap: var(--space-3); align-items: center;">
+                            <select class="form-control" style="width: 150px;">
+                                <option>25 per page</option>
+                                <option>50 per page</option>
+                                <option>100 per page</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="panel-body" style="padding: 0; overflow-x: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Severity</th>
+                                    <th>User</th>
+                                    <th>IP Address</th>
+                                    <th>Event Type</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: var(--space-8); color: var(--text-tertiary);">
+                                        No analysis results yet. Start by analyzing log files.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <span>Showing 0 to 0 of 0 entries</span>
+                            <div style="display: flex; gap: var(--space-3);">
+                                <button class="btn btn-secondary btn-sm" disabled>← Previous</button>
+                                <button class="btn btn-secondary btn-sm" disabled>Next →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>&copy; 2024 DFRT Log Analyzer. All rights reserved.</span>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <span style="color: var(--text-tertiary);">v2.5.0</span>
+        </footer>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/core/api-client.js"></script>
+    <script src="/js/core/state-manager.js"></script>
+    <script src="/js/core/ui-notifications.js"></script>
+    <script src="/js/core/utils.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/pages/results-enhanced.js"></script>
+</body>
+</html>

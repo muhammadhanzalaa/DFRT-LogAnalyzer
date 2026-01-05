@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DFRT Log Analyzer - Advanced Digital Forensics and Incident Response Log Analysis Tool">
+    <meta name="theme-color" content="#2563eb">
+    <title>DFRT Log Analyzer - Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-brand">
+                <div class="app-header-brand-icon">DFRT</div>
+                <span>Log Analyzer</span>
+            </div>
+            
+            <div class="app-header-title">
+                <h1 class="page-title m-0">Dashboard</h1>
+            </div>
+            
+            <nav class="app-header-nav">
+                <a href="#" class="header-nav-item active">Dashboard</a>
+                <a href="analyze.html" class="header-nav-item">Analyze</a>
+                <a href="results.html" class="header-nav-item">Results</a>
+                <a href="threats.html" class="header-nav-item">Threats</a>
+                <a href="timeline.html" class="header-nav-item">Timeline</a>
+                <a href="settings.html" class="header-nav-item">Settings</a>
+            </nav>
+        </header>
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="sidebar-nav-item active">
+                        <span class="sidebar-nav-icon">📊</span>
+                        <span class="sidebar-nav-label">Dashboard</span>
+                    </a>
+                    <a href="analyze.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📁</span>
+                        <span class="sidebar-nav-label">Analyze</span>
+                    </a>
+                    <a href="results.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📋</span>
+                        <span class="sidebar-nav-label">Results</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Analysis</div>
+                <nav class="sidebar-nav">
+                    <a href="threats.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">⚠️</span>
+                        <span class="sidebar-nav-label">Threats</span>
+                    </a>
+                    <a href="timeline.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📈</span>
+                        <span class="sidebar-nav-label">Timeline</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Settings</div>
+                <nav class="sidebar-nav">
+                    <a href="settings.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">⚙️</span>
+                        <span class="sidebar-nav-label">Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-content">
+                <div class="page-header">
+                    <h1 class="page-title">Welcome to DFRT Log Analyzer</h1>
+                    <p class="page-description">Digital Forensics and Incident Response Log Analysis Tool</p>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-4 mb-6">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Total Analyses</div>
+                            <span class="widget-action">→</span>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-primary);">0</div>
+                            <p style="font-size: 0.875rem; color: var(--text-tertiary);">Completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Threats Detected</div>
+                            <span class="widget-action">→</span>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-danger);">0</div>
+                            <p style="font-size: 0.875rem; color: var(--text-tertiary);">Critical</p>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Log Entries</div>
+                            <span class="widget-action">→</span>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-info);">0</div>
+                            <p style="font-size: 0.875rem; color: var(--text-tertiary);">Analyzed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Success Rate</div>
+                            <span class="widget-action">→</span>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-success);">100%</div>
+                            <p style="font-size: 0.875rem; color: var(--text-tertiary);">All Systems</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Features Overview -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Key Features</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="grid grid-2" style="gap: var(--space-6);">
+                            <div class="flex flex-col gap-3">
+                                <h4>Multi-Format Log Parsing</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    Support for Windows Events, Syslog, Apache, Nginx, and more
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4>Threat Detection</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    Brute-force attack detection and pattern recognition
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4>Log Tampering Detection</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    Identify forensic indicators of compromise
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4>User Behavior Analysis</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    User profiling and anomaly detection
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4>Timeline Reconstruction</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    Visual attack timeline and event correlation
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4>Cross-Log Correlation</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                                    Pattern detection across multiple log sources
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Getting Started -->
+                <div class="panel mt-8">
+                    <div class="panel-header">
+                        <div class="panel-title">Getting Started</div>
+                    </div>
+                    <div class="panel-body">
+                        <ol style="margin-left: var(--space-6); color: var(--text-secondary);">
+                            <li style="margin-bottom: var(--space-3);">
+                                <strong>Upload Logs</strong> - Go to the Analyze page and upload your log files
+                            </li>
+                            <li style="margin-bottom: var(--space-3);">
+                                <strong>Configure Analysis</strong> - Select log types and analysis options
+                            </li>
+                            <li style="margin-bottom: var(--space-3);">
+                                <strong>Start Analysis</strong> - Run the analysis and wait for results
+                            </li>
+                            <li style="margin-bottom: var(--space-3);">
+                                <strong>Review Results</strong> - Check the Results page for detailed findings
+                            </li>
+                            <li>
+                                <strong>Investigate Threats</strong> - Use Threats and Timeline tabs for deeper analysis
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="analyze.html" class="btn btn-primary">Start Analyzing Now</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>&copy; 2024 DFRT Log Analyzer. All rights reserved.</span>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <span style="color: var(--text-tertiary);">v2.5.0</span>
+        </footer>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/core/api-client.js"></script>
+    <script src="/js/core/state-manager.js"></script>
+    <script src="/js/core/ui-notifications.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/pages/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof Dashboard !== 'undefined') {
+                Dashboard.init();
+            }
+        });
+    </script>
+</body>
+</html>

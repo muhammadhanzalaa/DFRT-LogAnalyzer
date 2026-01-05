@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Settings - DFRT Log Analyzer">
+    <title>Settings - DFRT Log Analyzer</title>
+    
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-brand">
+                <div class="app-header-brand-icon">DFRT</div>
+                <span>Log Analyzer</span>
+            </div>
+            
+            <div class="app-header-title">
+                <h1 class="page-title m-0">Settings</h1>
+            </div>
+            
+            <nav class="app-header-nav">
+                <a href="index.html" class="header-nav-item">Dashboard</a>
+                <a href="analyze.html" class="header-nav-item">Analyze</a>
+                <a href="results.html" class="header-nav-item">Results</a>
+                <a href="threats.html" class="header-nav-item">Threats</a>
+                <a href="timeline.html" class="header-nav-item">Timeline</a>
+                <a href="#" class="header-nav-item active">Settings</a>
+            </nav>
+        </header>
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📊</span>
+                        <span class="sidebar-nav-label">Dashboard</span>
+                    </a>
+                    <a href="analyze.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📁</span>
+                        <span class="sidebar-nav-label">Analyze</span>
+                    </a>
+                    <a href="results.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📋</span>
+                        <span class="sidebar-nav-label">Results</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Settings</div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="sidebar-nav-item active">
+                        <span class="sidebar-nav-icon">⚙️</span>
+                        <span class="sidebar-nav-label">Preferences</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-content">
+                <div class="page-header">
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-description">Configure application preferences and behavior</p>
+                </div>
+                
+                <!-- Settings Tabs -->
+                <div class="panel">
+                    <div class="tabs">
+                        <div class="tabs-nav">
+                            <button class="tab-item active" data-tab="general">General</button>
+                            <button class="tab-item" data-tab="analysis">Analysis</button>
+                            <button class="tab-item" data-tab="notifications">Notifications</button>
+                            <button class="tab-item" data-tab="about">About</button>
+                        </div>
+                    </div>
+                    
+                    <!-- General Settings -->
+                    <div class="tabs-content active" data-tab="general">
+                        <div class="panel-body">
+                            <h3 style="margin-bottom: var(--space-6);">General Settings</h3>
+                            
+                            <div class="form-group">
+                                <label><strong>Theme</strong></label>
+                                <select class="form-control">
+                                    <option>Light</option>
+                                    <option>Dark</option>
+                                    <option>Auto (System)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><strong>Page Size</strong></label>
+                                <select class="form-control">
+                                    <option>25 entries per page</option>
+                                    <option selected>50 entries per page</option>
+                                    <option>100 entries per page</option>
+                                    <option>250 entries per page</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><strong>Auto-Refresh Interval</strong></label>
+                                <select class="form-control">
+                                    <option>Disabled</option>
+                                    <option>5 seconds</option>
+                                    <option selected>30 seconds</option>
+                                    <option>1 minute</option>
+                                    <option>5 minutes</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-check" style="margin-top: var(--space-6);">
+                                <input type="checkbox" id="animationEnabled" checked>
+                                <label for="animationEnabled" class="form-check-label">
+                                    <strong>Enable Animations</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="compactMode">
+                                <label for="compactMode" class="form-check-label">
+                                    <strong>Compact Mode</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analysis Settings -->
+                    <div class="tabs-content" data-tab="analysis">
+                        <div class="panel-body">
+                            <h3 style="margin-bottom: var(--space-6);">Analysis Preferences</h3>
+                            
+                            <div class="form-group">
+                                <label><strong>Default Brute Force Threshold</strong></label>
+                                <input type="number" class="form-control" value="5" min="1">
+                                <div class="form-text">Failed login attempts before alert</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><strong>Brute Force Time Window (seconds)</strong></label>
+                                <input type="number" class="form-control" value="300" min="1">
+                                <div class="form-text">Time period to count failed attempts</div>
+                            </div>
+                            
+                            <h4 style="margin-top: var(--space-8); margin-bottom: var(--space-4);">Default Analysis Levels</h4>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="defaultBasic" checked>
+                                <label for="defaultBasic" class="form-check-label">
+                                    <strong>Basic Analysis</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="defaultIntermediate" checked>
+                                <label for="defaultIntermediate" class="form-check-label">
+                                    <strong>Intermediate Analysis</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="defaultAdvanced" checked>
+                                <label for="defaultAdvanced" class="form-check-label">
+                                    <strong>Advanced Analysis</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Settings -->
+                    <div class="tabs-content" data-tab="notifications">
+                        <div class="panel-body">
+                            <h3 style="margin-bottom: var(--space-6);">Notification Preferences</h3>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="enableNotifications" checked>
+                                <label for="enableNotifications" class="form-check-label">
+                                    <strong>Enable Notifications</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="soundEnabled" checked>
+                                <label for="soundEnabled" class="form-check-label">
+                                    <strong>Enable Sound Alerts</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="criticalAlerts" checked>
+                                <label for="criticalAlerts" class="form-check-label">
+                                    <strong>Critical Alerts</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="warningAlerts" checked>
+                                <label for="warningAlerts" class="form-check-label">
+                                    <strong>Warning Alerts</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: var(--space-6);">
+                                <label><strong>Toast Duration (milliseconds)</strong></label>
+                                <input type="number" class="form-control" value="5000" min="1000">
+                                <div class="form-text">How long notifications display before auto-closing</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- About -->
+                    <div class="tabs-content" data-tab="about">
+                        <div class="panel-body">
+                            <h3 style="margin-bottom: var(--space-6);">About DFRT Log Analyzer</h3>
+                            
+                            <dl style="display: grid; grid-template-columns: auto 1fr; gap: var(--space-4);">
+                                <dt><strong>Version:</strong></dt>
+                                <dd>2.5.0</dd>
+                                
+                                <dt><strong>Build Date:</strong></dt>
+                                <dd>January 5, 2024</dd>
+                                
+                                <dt><strong>Author:</strong></dt>
+                                <dd>Digital Forensics & Incident Response Team</dd>
+                                
+                                <dt><strong>License:</strong></dt>
+                                <dd>MIT</dd>
+                                
+                                <dt><strong>Repository:</strong></dt>
+                                <dd><a href="https://github.com" target="_blank">GitHub Repository</a></dd>
+                                
+                                <dt><strong>Documentation:</strong></dt>
+                                <dd><a href="#" target="_blank">Online Documentation</a></dd>
+                            </dl>
+                            
+                            <h4 style="margin-top: var(--space-8); margin-bottom: var(--space-4);">Features</h4>
+                            <ul style="margin-left: var(--space-6); color: var(--text-secondary);">
+                                <li>Multi-format log parsing</li>
+                                <li>Brute-force attack detection</li>
+                                <li>Log tampering detection</li>
+                                <li>User behavior profiling</li>
+                                <li>Event timeline reconstruction</li>
+                                <li>Cross-log correlation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button class="btn btn-primary">Save Settings</button>
+                    <button class="btn btn-secondary">Reset to Defaults</button>
+                    <button class="btn btn-danger">Clear All Data</button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>&copy; 2024 DFRT Log Analyzer. All rights reserved.</span>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <span style="color: var(--text-tertiary);">v2.5.0</span>
+        </footer>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/core/api-client.js"></script>
+    <script src="/js/core/state-manager.js"></script>
+    <script src="/js/core/ui-notifications.js"></script>
+    <script src="/js/core/utils.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/pages/settings-enhanced.js"></script>
+    
+    <style>
+        .tabs { padding: var(--space-5); border-bottom: var(--border-width-1) solid var(--border-color-primary); }
+        .tabs-nav { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+        .tab-item { padding: var(--space-3) 0; border: none; background: none; cursor: pointer; position: relative; font-weight: var(--font-weight-medium); color: var(--text-secondary); }
+        .tab-item.active { color: var(--color-primary); }
+        .tab-item.active::after { content: ''; position: absolute; bottom: -5px; left: 0; right: 0; height: 2px; background: var(--color-primary); }
+    </style>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analyze logs - DFRT Log Analyzer">
+    <title>Analyze Logs - DFRT Log Analyzer</title>
+    
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-brand">
+                <div class="app-header-brand-icon">DFRT</div>
+                <span>Log Analyzer</span>
+            </div>
+            
+            <div class="app-header-title">
+                <h1 class="page-title m-0">Analyze Logs</h1>
+            </div>
+            
+            <nav class="app-header-nav">
+                <a href="index.html" class="header-nav-item">Dashboard</a>
+                <a href="#" class="header-nav-item active">Analyze</a>
+                <a href="results.html" class="header-nav-item">Results</a>
+                <a href="threats.html" class="header-nav-item">Threats</a>
+                <a href="timeline.html" class="header-nav-item">Timeline</a>
+                <a href="settings.html" class="header-nav-item">Settings</a>
+            </nav>
+        </header>
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📊</span>
+                        <span class="sidebar-nav-label">Dashboard</span>
+                    </a>
+                    <a href="#" class="sidebar-nav-item active">
+                        <span class="sidebar-nav-icon">📁</span>
+                        <span class="sidebar-nav-label">Analyze</span>
+                    </a>
+                    <a href="results.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📋</span>
+                        <span class="sidebar-nav-label">Results</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Analysis</div>
+                <nav class="sidebar-nav">
+                    <a href="threats.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">⚠️</span>
+                        <span class="sidebar-nav-label">Threats</span>
+                    </a>
+                    <a href="timeline.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📈</span>
+                        <span class="sidebar-nav-label">Timeline</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-content">
+                <div class="page-header">
+                    <h1 class="page-title">Analyze Logs</h1>
+                    <p class="page-description">Upload and analyze your log files for threats and suspicious activity</p>
+                </div>
+                
+                <!-- Wizard Container -->
+                <div class="panel">
+                    <!-- Step Indicators -->
+                    <div class="panel-header">
+                        <div style="width: 100%; display: flex; justify-content: space-between;">
+                            <div class="step-indicator active" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Upload Files</div>
+                            </div>
+                            <div class="step-indicator" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Select Log Type</div>
+                            </div>
+                            <div class="step-indicator" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Analysis Options</div>
+                            </div>
+                            <div class="step-indicator" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Review & Start</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <!-- Step 1: Upload Files -->
+                        <div class="wizard-step active" data-step="1">
+                            <h3>Upload Log Files</h3>
+                            <p class="text-secondary mb-4">Select one or more log files to analyze. Maximum file size: 100MB per file.</p>
+                            
+                            <!-- Upload Zone -->
+                            <div class="upload-zone" id="uploadZone">
+                                <div style="text-align: center; padding: var(--space-8);">
+                                    <div style="font-size: 3rem; margin-bottom: var(--space-3);">📂</div>
+                                    <h4>Drag and drop your files here</h4>
+                                    <p style="color: var(--text-tertiary);">or</p>
+                                    <button type="button" class="btn btn-primary" id="browseFilesBtn">
+                                        Browse Files
+                                    </button>
+                                    <input type="file" id="fileInput" multiple accept=".log,.txt,.csv,.evtx,.json" style="display: none;">
+                                </div>
+                            </div>
+                            
+                            <!-- File List -->
+                            <div id="fileListContainer" style="margin-top: var(--space-6); display: none;">
+                                <h4 style="margin-bottom: var(--space-3);">Selected Files</h4>
+                                <div id="fileList" style="display: flex; flex-direction: column; gap: var(--space-2);"></div>
+                                <button type="button" class="btn btn-secondary" id="clearAllFiles" style="margin-top: var(--space-4);">
+                                    Clear All
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Log Type Selection -->
+                        <div class="wizard-step" data-step="2" style="display: none;">
+                            <h3>Select Log Type</h3>
+                            <p class="text-secondary mb-6">Choose the type of log files you're analyzing:</p>
+                            
+                            <div class="grid grid-2">
+                                <div class="log-type-card card" data-type="windows_event" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">🪟</div>
+                                        <h4>Windows Event</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">Windows Event Viewer logs</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-type-card card" data-type="syslog" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">🐧</div>
+                                        <h4>Syslog</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">Linux/Unix syslog format</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-type-card card" data-type="apache_access" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">🔌</div>
+                                        <h4>Apache Access</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">Apache web server logs</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-type-card card" data-type="nginx" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">⚡</div>
+                                        <h4>Nginx</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">Nginx web server logs</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-type-card card" data-type="generic" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">📄</div>
+                                        <h4>Generic</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">Other text log formats</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-type-card card" data-type="json" style="cursor: pointer; transition: all var(--transition-fast);">
+                                    <div class="card-body" style="text-align: center;">
+                                        <div style="font-size: 2rem; margin-bottom: var(--space-2);">{ }</div>
+                                        <h4>JSON</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-tertiary);">JSON structured logs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Analysis Options -->
+                        <div class="wizard-step" data-step="3" style="display: none;">
+                            <h3>Analysis Options</h3>
+                            <p class="text-secondary mb-6">Configure analysis parameters:</p>
+                            
+                            <div class="form-group">
+                                <label><strong>Analysis Name</strong></label>
+                                <input type="text" class="form-control" id="analysisName" placeholder="e.g., Security Incident Investigation">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><strong>Description</strong></label>
+                                <textarea class="form-control" id="analysisDescription" placeholder="Add notes about this analysis..."></textarea>
+                            </div>
+                            
+                            <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-4);">Analysis Levels</h4>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="enableBasic" class="form-check-input" checked>
+                                <label for="enableBasic" class="form-check-label">
+                                    <strong>Basic Analysis</strong>
+                                    <p style="font-size: 0.875rem; color: var(--text-tertiary);">Log parsing, validation, timestamp extraction</p>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="enableIntermediate" class="form-check-input" checked>
+                                <label for="enableIntermediate" class="form-check-label">
+                                    <strong>Intermediate Analysis</strong>
+                                    <p style="font-size: 0.875rem; color: var(--text-tertiary);">Event extraction, login analysis, failed login detection</p>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="enableAdvanced" class="form-check-input" checked>
+                                <label for="enableAdvanced" class="form-check-label">
+                                    <strong>Advanced Analysis</strong>
+                                    <p style="font-size: 0.875rem; color: var(--text-tertiary);">User profiling, brute-force detection, log tampering, timeline reconstruction</p>
+                                </label>
+                            </div>
+                            
+                            <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-4);">Threat Detection Settings</h4>
+                            
+                            <div class="form-group">
+                                <label for="bruteForceThreshold"><strong>Brute Force Threshold</strong></label>
+                                <input type="number" class="form-control" id="bruteForceThreshold" value="5" min="1">
+                                <div class="form-text">Number of failed login attempts to trigger alert</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bruteForceWindow"><strong>Brute Force Window (seconds)</strong></label>
+                                <input type="number" class="form-control" id="bruteForceWindow" value="300" min="1">
+                                <div class="form-text">Time window for counting brute force attempts</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Review & Start -->
+                        <div class="wizard-step" data-step="4" style="display: none;">
+                            <h3>Review Analysis Configuration</h3>
+                            
+                            <div class="panel" style="margin-top: var(--space-6);">
+                                <div class="panel-header">
+                                    <div>Files to Analyze</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="reviewFiles" style="display: flex; flex-direction: column; gap: var(--space-3);"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <div>Configuration</div>
+                                </div>
+                                <div class="panel-body">
+                                    <dl style="display: grid; grid-template-columns: auto 1fr; gap: var(--space-4);">
+                                        <dt><strong>Log Type:</strong></dt>
+                                        <dd id="reviewLogType">-</dd>
+                                        
+                                        <dt><strong>Analysis Name:</strong></dt>
+                                        <dd id="reviewAnalysisName">-</dd>
+                                        
+                                        <dt><strong>Analysis Levels:</strong></dt>
+                                        <dd id="reviewLevels">-</dd>
+                                        
+                                        <dt><strong>Brute Force Threshold:</strong></dt>
+                                        <dd id="reviewThreshold">-</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <div class="panel-footer">
+                        <div style="display: flex; gap: var(--space-3); width: 100%; justify-content: space-between;">
+                            <button type="button" class="btn btn-secondary" id="wizardPrevBtn" style="display: none;">
+                                ← Previous
+                            </button>
+                            <div style="display: flex; gap: var(--space-3);">
+                                <button type="button" class="btn btn-secondary" id="wizardCancelBtn">
+                                    Cancel
+                                </button>
+                                <button type="button" class="btn btn-primary" id="wizardNextBtn">
+                                    Next →
+                                </button>
+                                <button type="button" class="btn btn-success" id="startAnalysisBtn" style="display: none;">
+                                    Start Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>&copy; 2024 DFRT Log Analyzer. All rights reserved.</span>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <span style="color: var(--text-tertiary);">v2.5.0</span>
+        </footer>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- CSS for wizard steps -->
+    <style>
+        .step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.5;
+            transition: opacity var(--transition-fast);
+        }
+        
+        .step-indicator.active {
+            opacity: 1;
+        }
+        
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+        }
+        
+        .step-indicator.active .step-number {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .upload-zone {
+            border: 2px dashed var(--border-color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            text-align: center;
+            transition: all var(--transition-fast);
+            background-color: var(--bg-secondary);
+            cursor: pointer;
+        }
+        
+        .upload-zone.drag-over {
+            border-color: var(--color-primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .log-type-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .log-type-card.selected {
+            border-color: var(--color-primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            padding-left: var(--space-2);
+        }
+        
+        .form-check-label p {
+            margin: 0;
+            margin-left: var(--space-4);
+        }
+    </style>
+    
+    <!-- Scripts -->
+    <script src="/js/core/api-client.js"></script>
+    <script src="/js/core/state-manager.js"></script>
+    <script src="/js/core/ui-notifications.js"></script>
+    <script src="/js/core/utils.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/pages/analyze-enhanced.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AnalyzePageEnhanced !== 'undefined') {
+                AnalyzePageEnhanced.init();
+            }
+        });
+    </script>
+</body>
+</html>

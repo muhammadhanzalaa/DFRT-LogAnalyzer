@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Threats Analysis - DFRT Log Analyzer">
+    <title>Threats - DFRT Log Analyzer</title>
+    
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-brand">
+                <div class="app-header-brand-icon">DFRT</div>
+                <span>Log Analyzer</span>
+            </div>
+            
+            <div class="app-header-title">
+                <h1 class="page-title m-0">Threat Analysis</h1>
+            </div>
+            
+            <nav class="app-header-nav">
+                <a href="index.html" class="header-nav-item">Dashboard</a>
+                <a href="analyze.html" class="header-nav-item">Analyze</a>
+                <a href="results.html" class="header-nav-item">Results</a>
+                <a href="#" class="header-nav-item active">Threats</a>
+                <a href="timeline.html" class="header-nav-item">Timeline</a>
+                <a href="settings.html" class="header-nav-item">Settings</a>
+            </nav>
+        </header>
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📊</span>
+                        <span class="sidebar-nav-label">Dashboard</span>
+                    </a>
+                    <a href="analyze.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📁</span>
+                        <span class="sidebar-nav-label">Analyze</span>
+                    </a>
+                    <a href="results.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📋</span>
+                        <span class="sidebar-nav-label">Results</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Analysis</div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="sidebar-nav-item active">
+                        <span class="sidebar-nav-icon">⚠️</span>
+                        <span class="sidebar-nav-label">Threats</span>
+                    </a>
+                    <a href="timeline.html" class="sidebar-nav-item">
+                        <span class="sidebar-nav-icon">📈</span>
+                        <span class="sidebar-nav-label">Timeline</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-content">
+                <div class="page-header">
+                    <h1 class="page-title">Threat Analysis</h1>
+                    <p class="page-description">Detected threats and security events from analyzed logs</p>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">Export Threats</button>
+                        <button class="btn btn-secondary">Filter Threats</button>
+                    </div>
+                </div>
+                
+                <!-- Threat Summary -->
+                <div class="grid grid-4 mb-6">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Total Threats</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-danger);">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Critical</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: #dc2626;">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">High</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-warning);">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-title">Brute Force Attempts</div>
+                        </div>
+                        <div class="widget-content">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--color-info);">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="panel">
+                    <div class="tabs">
+                        <div class="tabs-nav">
+                            <button class="tab-item active" data-tab="brute-force">Brute Force Attacks</button>
+                            <button class="tab-item" data-tab="tampering">Log Tampering</button>
+                            <button class="tab-item" data-tab="anomalies">Anomalies</button>
+                            <button class="tab-item" data-tab="suspicious">Suspicious Activity</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Brute Force Tab -->
+                    <div class="tabs-content active" data-tab="brute-force">
+                        <div class="panel-body">
+                            <div style="color: var(--text-tertiary); text-align: center; padding: var(--space-8);">
+                                No brute force attacks detected
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tampering Tab -->
+                    <div class="tabs-content" data-tab="tampering">
+                        <div class="panel-body">
+                            <div style="color: var(--text-tertiary); text-align: center; padding: var(--space-8);">
+                                No log tampering detected
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anomalies Tab -->
+                    <div class="tabs-content" data-tab="anomalies">
+                        <div class="panel-body">
+                            <div style="color: var(--text-tertiary); text-align: center; padding: var(--space-8);">
+                                No anomalies detected
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Suspicious Tab -->
+                    <div class="tabs-content" data-tab="suspicious">
+                        <div class="panel-body">
+                            <div style="color: var(--text-tertiary); text-align: center; padding: var(--space-8);">
+                                No suspicious activity detected
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>&copy; 2024 DFRT Log Analyzer. All rights reserved.</span>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <span style="color: var(--text-tertiary);">v2.5.0</span>
+        </footer>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/core/api-client.js"></script>
+    <script src="/js/core/state-manager.js"></script>
+    <script src="/js/core/ui-notifications.js"></script>
+    <script src="/js/core/utils.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/pages/threats-enhanced.js"></script>
+    
+    <style>
+        .tabs { padding: var(--space-5); border-bottom: var(--border-width-1) solid var(--border-color-primary); }
+        .tabs-nav { display: flex; gap: var(--space-4); }
+        .tab-item { padding: var(--space-3) 0; border: none; background: none; cursor: pointer; position: relative; }
+        .tab-item.active { color: var(--color-primary); }
+        .tab-item.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--color-primary); }
+    </style>
+</body>
+</html>
