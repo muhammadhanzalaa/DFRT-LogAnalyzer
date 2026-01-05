@@ -268,4 +268,7 @@ class DatabaseService {
 // Singleton instance
 const dbService = new DatabaseService();
 
+// Add getInstance for compatibility with tests
+DatabaseService.getInstance = () => dbService;
+
 module.exports = dbService;

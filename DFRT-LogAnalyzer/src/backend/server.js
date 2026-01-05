@@ -10,6 +10,7 @@ const { requestLogger } = require('./middleware/logging.middleware');
 const { rateLimiter } = require('./middleware/rateLimit.middleware');
 const { securityHeaders } = require('./middleware/security.middleware');
 const { fileUploadValidator } = require('./middleware/upload.middleware');
+const dbService = require('./services/database.service');
 
 // Initialize Express App
 const app = express();
@@ -68,19 +69,26 @@ app.use(errorHandler);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-  console.log(`DFRT Log Analyzer Backend running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-  console.log(`Database: ${process.env.DATABASE_URL}`);
-});
 
-// Graceful Shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received. Shutting down gracefully...');
-  server.close(() => {
-    console.log('Server closed');
-    process.exit(0);
+// Initialize database before starting server
+dbService.initialize().then(() => {
+  const server = app.listen(PORT, () => {
+    console.log(`DFRT Log Analyzer Backend running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log(`Database: ${process.env.DATABASE_URL}`);
   });
+
+  // Graceful Shutdown
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM received. Shutting down gracefully...');
+    server.close(() => {
+      console.log('Server closed');
+      process.exit(0);
+    });
+  });
+}).catch(err => {
+  console.error('Failed to initialize database:', err);
+  process.exit(1);
 });
 
 module.exports = app;

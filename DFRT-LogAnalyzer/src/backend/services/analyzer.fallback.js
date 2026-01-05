@@ -830,5 +830,5 @@ class FallbackAnalyzer {
 
 // Export for use in Node.js
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = new FallbackAnalyzer();
+    module.exports = FallbackAnalyzer;
 }
